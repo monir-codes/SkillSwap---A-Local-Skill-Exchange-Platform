@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import HomeLayout from '../Layouts/HomeLayout';
 import Home from '../pages/Home';
+import SkillDetails from '../components/SkillDetails';
 
 const Router = createBrowserRouter([
     {
@@ -15,7 +16,9 @@ const Router = createBrowserRouter([
                 loader: ()=> fetch("/SkillList.json")
             },
             {
-                path: ""
+                path: "/skill/:id",
+                element: <SkillDetails></SkillDetails>,
+                loader: ()=> fetch("/SkillList.json"),
             },
         ]
     }
