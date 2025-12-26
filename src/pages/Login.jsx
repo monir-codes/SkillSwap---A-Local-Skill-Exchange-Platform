@@ -1,33 +1,64 @@
-import React from 'react';
+import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-    return (
-<div className="min-h-[80vh] flex items-center justify-center bg-gray-50 py-10">
-      <div className="w-full max-w-md bg-white p-10 rounded-[2rem] shadow-2xl border border-gray-100">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-black text-gray-800">Welcome Back</h1>
-          <p className="text-gray-400 mt-2 font-medium">Please enter your details</p>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-6">
+      <div className="w-full max-w-[450px] relative p-5">
+        {/* Background Glows */}
+        <div className="absolute -top-20 -left-20 w-64 h-64 bg-indigo-600/20 rounded-full blur-[100px]"></div>
+        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-600/20 rounded-full blur-[100px]"></div>
+
+        <div className="relative bg-slate-900/50 backdrop-blur-xl border border-slate-800 p-10 md:p-14 rounded-[2.5rem] shadow-2xl">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-black text-white tracking-tight mb-3">Welcome Back</h2>
+            <p className="text-slate-400 font-medium">Please enter your details</p>
+          </div>
+
+          <form className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-300 ml-1">Email</label>
+              <input 
+                type="email" 
+                placeholder="name@company.com" 
+                className="w-full h-14 bg-slate-800/50 border border-slate-700 rounded-2xl px-5 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500" 
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex justify-between px-1">
+                <label className="text-sm font-semibold text-slate-300">Password</label>
+                <button type="button" className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors">Forgot?</button>
+              </div>
+              <input 
+                type="password" 
+                placeholder="••••••••" 
+                className="w-full h-14 bg-slate-800/50 border border-slate-700 rounded-2xl px-5 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500" 
+              />
+            </div>
+
+            <button className="w-full h-14 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl shadow-lg shadow-indigo-600/20 transition-all active:scale-[0.98] mt-4">
+              Sign In
+            </button>
+          </form>
+
+          <div className="relative my-10">
+            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-slate-800"></span></div>
+            <div className="relative flex justify-center text-xs uppercase"><span className="bg-[#1e293b] px-4 text-slate-500 font-bold tracking-widest">Or continue with</span></div>
+          </div>
+
+          <button className="w-full h-14 bg-white hover:bg-slate-100 text-slate-900 font-bold rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98]">
+            <FcGoogle size={24} />
+            Google
+          </button>
+
+          <p className="text-center mt-10 text-slate-400 font-medium">
+            New here? <Link to="/signup" className="text-white font-bold hover:underline ml-1">Create account</Link>
+          </p>
         </div>
-        <form className="space-y-5">
-          <div className="form-control">
-            <label className="label font-semibold text-gray-700">Email Address</label>
-            <input type="email" placeholder="name@company.com" className="input input-bordered bg-gray-50 focus:bg-white transition-all rounded-xl" required />
-          </div>
-          <div className="form-control">
-            <label className="label font-semibold text-gray-700">Password</label>
-            <input type="password" placeholder="••••••••" className="input input-bordered bg-gray-50 focus:bg-white transition-all rounded-xl" required />
-            <label className="label mt-1">
-              <span className="label-text-alt link link-primary no-underline font-medium">Forgot Password?</span>
-            </label>
-          </div>
-          <button className="btn btn-primary w-full rounded-xl text-lg font-bold shadow-lg shadow-indigo-200">Sign In</button>
-        </form>
-        <p className="text-center mt-8 text-gray-600">
-          Don't have an account? <span className="text-indigo-600 font-bold cursor-pointer">Sign up free</span>
-        </p>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;
