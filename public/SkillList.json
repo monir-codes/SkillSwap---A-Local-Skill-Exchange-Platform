@@ -1,0 +1,74 @@
+[
+  {
+    "skillId": 1,
+    "skillName": "Digital Photography 101",
+    "providerName": "Marcus Thorne",
+    "providerEmail": "marcus@skillswap.com",
+    "price": 25,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Master your DSLR or mirrorless camera settings and composition basics.",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    "category": "Photography"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Intro to Python Programming",
+    "providerName": "Elena Rodriguez",
+    "providerEmail": "elena@skillswap.com",
+    "price": 30,
+    "rating": 4.7,
+    "slotsAvailable": 8,
+    "description": "Learn the fundamentals of Python, from variables to basic automation scripts.",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+    "category": "Technology"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Authentic Italian Pasta Making",
+    "providerName": "Giovanni Rossi",
+    "providerEmail": "giovanni@skillswap.com",
+    "price": 45,
+    "rating": 5.0,
+    "slotsAvailable": 2,
+    "description": "Hands-on workshop making fettuccine and ravioli from scratch.",
+    "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80",
+    "category": "Culinary"
+  },
+  {
+    "skillId": 4,
+    "skillName": "Yoga for Stress Relief",
+    "providerName": "Priya Sharma",
+    "providerEmail": "priya@skillswap.com",
+    "price": 15,
+    "rating": 4.8,
+    "slotsAvailable": 12,
+    "description": "Gentle Hatha yoga sequences designed to reduce anxiety and improve flexibility.",
+    "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
+    "category": "Wellness"
+  },
+  {
+    "skillId": 5,
+    "skillName": "Graphic Design Basics",
+    "providerName": "Jordan Lee",
+    "providerEmail": "jordan@skillswap.com",
+    "price": 35,
+    "rating": 4.5,
+    "slotsAvailable": 6,
+    "description": "Introduction to layout, typography, and color theory using industry tools.",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+    "category": "Design"
+  },
+  {
+    "skillId": 6,
+    "skillName": "Introductory French",
+    "providerName": "Amélie Dubois",
+    "providerEmail": "amelie@skillswap.com",
+    "price": 22,
+    "rating": 4.6,
+    "slotsAvailable": 10,
+    "description": "Start your journey with basic French greetings, grammar, and pronunciation.",
+    "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
+    "category": "Language"
+  }
+]
