@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
-const Navbar = ({ user, handleLogout }) => {
+const Navbar = ({ handleLogout }) => {
+
+const {user} = useContext(AuthContext);
+
   const navLinks = (
     <>
       <li><NavLink to="/" className={({ isActive }) => isActive ? "text-primary font-bold border-b-2 border-primary" : "hover:text-primary transition"}>Home</NavLink></li>
@@ -38,10 +43,10 @@ const Navbar = ({ user, handleLogout }) => {
       <div className="navbar-end">
         {user ? (
           <div className="w-10 h-10 rounded-full ring ring-indigo-500 overflow-hidden shadow-md">
-            <img src={user.photoURL} alt="avatar" />
+            <img src={user?.photoURL} alt="avatar" />
           </div>
         ) : (
-          <Link to="/login" className="btn btn-primary btn-sm md:btn-md px-6 rounded-full shadow-lg">Login</Link>
+          <Link to="/auth/login" className="btn btn-primary btn-sm md:btn-md px-6 rounded-full shadow-lg">Login</Link>
         )}
       </div>
     </div>

@@ -6,6 +6,7 @@ import SkillDetails from '../components/SkillDetails';
 import PrivateRoute from '../Provider/PrivateRoute';
 import Login from '../pages/Login';
 import AuthLayout from '../Layouts/AuthLayout';
+import Signup from '../pages/Signup';
 
 const Router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/auth/signup",
-                element: <Login></Login>,
+                element: <Signup></Signup>,
             }
         ]
     },
