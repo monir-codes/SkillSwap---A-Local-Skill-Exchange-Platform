@@ -1,12 +1,12 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase.config';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Signup = () => {
   const {setUser} = useContext(AuthContext);
-
+  const navigate = useNavigate()
 const handleSignUp = (e)=>{
   e.preventDefault();
   const form = e.target
@@ -17,7 +17,14 @@ const handleSignUp = (e)=>{
 
   createUserWithEmailAndPassword(auth, email, password)
   .then((result)=>{
-    setUser(result.user)
+    setUser(result.user);
+    updateProfile(result.user, {
+      displayName: name,
+      photoURL: photo,
+    })
+    .then(()=>{
+      navigate("/")
+    })
   })
   .catch((error)=>{
     alert(error.code)
