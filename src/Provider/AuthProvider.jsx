@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase.config';
 
@@ -8,6 +8,13 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true)
+
+    const updateUserProfile = (name, photo)=>{
+        return updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
+        })
+    }
 
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth, (currentUser)=>{
@@ -21,6 +28,7 @@ const AuthData = {
     user,
     setUser,
     loading,
+    updateUserProfile,
 
 
 }

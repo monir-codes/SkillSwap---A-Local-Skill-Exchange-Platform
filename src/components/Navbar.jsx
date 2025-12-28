@@ -50,7 +50,9 @@ const logOut = ()=>{
           <div className="flex gap-2 items-center">
 
           <div className="w-10 h-10 rounded-full ring ring-indigo-500 overflow-hidden shadow-md">
+          <Link to={"/profile"}>
             <img src={user?.photoURL} alt="avatar" />
+          </Link>
           </div>
           <button onClick={logOut} className="btn btn-primary btn-sm md:btn-md px-6 rounded-full shadow-lg">LogOut</button>
           </div>

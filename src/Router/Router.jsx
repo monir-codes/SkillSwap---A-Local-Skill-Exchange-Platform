@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import AuthLayout from '../Layouts/AuthLayout';
 import Signup from '../pages/Signup';
 import Loading from '../pages/Loading';
+import MyProfile from '../pages/MyProfile';
 
 const Router = createBrowserRouter([
     {
@@ -43,8 +44,12 @@ const Router = createBrowserRouter([
             {
                 path: "/auth/signup",
                 element: <Signup></Signup>,
-            }
+            },
         ]
+    },
+    {
+        path: "/profile",
+        element: <MyProfile></MyProfile>
     },
 ])
 

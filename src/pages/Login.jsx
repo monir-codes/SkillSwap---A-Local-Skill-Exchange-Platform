@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import toast from "react-hot-toast";
 
@@ -8,6 +8,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const provider = new GoogleAuthProvider()
   
   const handleLogin = (e)=>{
     e.preventDefault();
@@ -23,6 +24,15 @@ const Login = () => {
     })
   }
 
+  const handleGoogleLogin = ()=>{
+    return signInWithPopup(auth, provider)
+    .then(()=>{
+       navigate(`${location.state ? location.state : "/"}`)
+    })
+    .catch((error)=>{
+      toast(error.code)
+    })
+  }
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white">
@@ -66,7 +76,7 @@ const Login = () => {
 
           <div className="divider my-10 text-gray-400 text-xs font-bold tracking-widest uppercase">Or Continue With</div>
 
-          <button className="w-full h-14 border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98]">
+          <button onClick={handleGoogleLogin} className="w-full h-14 border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 font-bold rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98]">
             <FcGoogle size={24} />
             Continue with Google
           </button>
