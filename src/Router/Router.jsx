@@ -7,6 +7,7 @@ import PrivateRoute from '../Provider/PrivateRoute';
 import Login from '../pages/Login';
 import AuthLayout from '../Layouts/AuthLayout';
 import Signup from '../pages/Signup';
+import Loading from '../pages/Loading';
 
 const Router = createBrowserRouter([
     {
@@ -17,7 +18,8 @@ const Router = createBrowserRouter([
                 index: true, 
                 path: "",
                 element: <Home></Home>,
-                loader: ()=> fetch("/SkillList.json")
+                loader: ()=> fetch("/SkillList.json"),
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: "/skill/:id",
@@ -26,6 +28,7 @@ const Router = createBrowserRouter([
                  <SkillDetails></SkillDetails>
                 </PrivateRoute>),
                 loader: ()=> fetch("/SkillList.json"),
+                hydrateFallbackElement: <Loading></Loading>
             },
         ]
     },

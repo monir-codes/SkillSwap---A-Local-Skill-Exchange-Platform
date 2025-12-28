@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
 
-const Navbar = ({ handleLogout }) => {
+const Navbar = () => {
 
-const {user} = useContext(AuthContext);
+const {user, loading} = useContext(AuthContext);
+const logOut = ()=>{
+  return signOut(auth)
+}
 
   const navLinks = (
     <>
@@ -42,8 +47,12 @@ const {user} = useContext(AuthContext);
 
       <div className="navbar-end">
         {user ? (
+          <div className="flex gap-2 items-center">
+
           <div className="w-10 h-10 rounded-full ring ring-indigo-500 overflow-hidden shadow-md">
             <img src={user?.photoURL} alt="avatar" />
+          </div>
+          <button onClick={logOut} className="btn btn-primary btn-sm md:btn-md px-6 rounded-full shadow-lg">LogOut</button>
           </div>
         ) : (
           <Link to="/auth/login" className="btn btn-primary btn-sm md:btn-md px-6 rounded-full shadow-lg">Login</Link>

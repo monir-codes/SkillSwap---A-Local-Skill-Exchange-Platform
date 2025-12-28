@@ -1,7 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const handleLogin = (e)=>{
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then(()=>{
+      navigate(`${location.state ? location.state : "/"}`)
+    })
+    .catch((e)=>{
+      toast(e.code)
+    })
+  }
+
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white">
       {/* Left Side: Desktop Only Visuals */}
@@ -23,10 +45,10 @@ const Login = () => {
             <p className="text-gray-500 font-medium">Log in to your SkillSwap account</p>
           </div>
 
-          <form className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-700 ml-1">Email Address</label>
-              <input type="email" placeholder="name@company.com" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <input name="email" type="email" placeholder="name@company.com" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
             </div>
 
             <div className="space-y-2">
@@ -34,7 +56,7 @@ const Login = () => {
                 <label className="text-sm font-bold text-gray-700">Password</label>
                 <button className="text-sm font-bold text-indigo-600 hover:underline">Forgot?</button>
               </div>
-              <input type="password" placeholder="••••••••" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <input name="password" type="password" placeholder="••••••••" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
             </div>
 
             <button className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-xl shadow-indigo-100 transition-all active:scale-[0.98] mt-4">

@@ -23,7 +23,7 @@ const handleSignUp = (e)=>{
       photoURL: photo,
     })
     .then(()=>{
-      navigate("/")
+      navigate("/auth/login")
     })
   })
   .catch((error)=>{
