@@ -9,6 +9,7 @@ import AuthLayout from '../Layouts/AuthLayout';
 import Signup from '../pages/Signup';
 import Loading from '../pages/Loading';
 import MyProfile from '../pages/MyProfile';
+import ForgotPassword from '../pages/ForgotPassword';
 
 const Router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const Router = createBrowserRouter([
                 path: "/auth/signup",
                 element: <Signup></Signup>,
             },
+            {
+                path: "/auth/forget",
+                element: <ForgotPassword></ForgotPassword>,
+            }
         ]
     },
     {
