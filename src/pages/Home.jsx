@@ -5,6 +5,7 @@ import PopularSkills from '../components/PopularSkills';
 import { useLoaderData } from 'react-router-dom';
 import HowItWorks from '../components/HowItWorks';
 import TopProviders from '../components/TopProviders';
+import CommunityStats from '../components/CommunityStats';
 
 const Home = () => {
   const skills = useLoaderData()
@@ -25,6 +26,9 @@ const Home = () => {
 
       {/* top rated providers */}
         <TopProviders></TopProviders>
+
+      {/* community stats (extra section) */}
+      <CommunityStats></CommunityStats>
       
 
     </div>

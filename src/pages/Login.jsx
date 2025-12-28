@@ -12,6 +12,7 @@ const Login = () => {
   const location = useLocation();
   const provider = new GoogleAuthProvider()
   const [showEye, setShowEye] = useState(false)
+  const [email, setEmail] = useState("")
   
   
   const handleLogin = (e)=>{
@@ -62,7 +63,7 @@ const Login = () => {
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-700 ml-1">Email Address</label>
-              <input name="email" type="email" placeholder="name@company.com" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <input name="email" type="email" placeholder="name@company.com" onChange={(e)=> setEmail(e.target.value)} className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
             </div>
 
             <div className="space-y-2 relative">
@@ -77,7 +78,7 @@ const Login = () => {
                }
                </span>
             </div>
-                <Link to={"/auth/forget"} className="text-sm font-bold text-indigo-600 hover:underline text-center p-2">Forgot Password?</Link>
+                <Link state={{email: email}} to={"/auth/forget"} className="text-sm font-bold text-indigo-600 hover:underline text-center p-2">Forgot Password?</Link>
 
             <button className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-xl shadow-indigo-100 transition-all active:scale-[0.98] mt-4">
               Login to Account

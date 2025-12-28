@@ -43,7 +43,7 @@ const TopProviders = () => {
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
             Top Rated <span className="text-indigo-600">Providers</span>
           </h2>
-          <p className="text-gray-500 mt-2 text-lg italic">Learn from the most experienced mentors in the community.</p>
+          <p className="text-gray-500 mt-2 text-lg">Learn from the most experienced mentors in the community.</p>
         </div>
         <button className="btn btn-outline border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:border-indigo-600 rounded-full px-8">
           Meet All Mentors

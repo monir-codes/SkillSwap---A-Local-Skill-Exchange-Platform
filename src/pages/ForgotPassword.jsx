@@ -1,29 +1,29 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
-import toast from "react-hot-toast";
 import { AuthContext } from "../Provider/AuthProvider";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
-  const { resetPassword, loading } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
+  const { loading, user} = useContext(AuthContext);
+  const location = useLocation();
+  const [email, setEmail] = useState(location.state?.email || user?.email || "")
 
   const handleReset = (e) => {
     e.preventDefault();
+    // const emailField = e.target.email.value;
     if (!email) {
       toast.error("Please enter your email address first!");
       return;
     }
  
-    resetPassword(email)
-      .then(() => {
-        toast.success("Password reset email sent! Check your inbox.");
-        // ইউজারকে সরাসরি জিমেইলে নিয়ে যাওয়ার শর্টকাট
-        window.open("https://mail.google.com", "_blank");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+    return sendPasswordResetEmail(auth, email).then(()=>{
+      toast.success("Password reset email sent!")
+    }).catch((e)=>{
+      toast.error(e.code)
+    })
   };
 
   return (
@@ -50,10 +50,11 @@ const ForgotPassword = () => {
               <FaEnvelope className="absolute left-5 top-5 text-gray-400" />
               <input 
                 type="email" 
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com" 
-                className="input input-bordered w-full h-14 rounded-2xl bg-gray-50 focus:bg-white border-gray-200 focus:border-indigo-600 transition-all pl-12 pr-5" 
+                className="input input-bordered w-full h-14 rounded-2xl bg-gray-50 focus:bg-white border-gray-200 focus:border-indigo-600 transition-all pl-6 pr-5" 
                 required
               />
             </div>
