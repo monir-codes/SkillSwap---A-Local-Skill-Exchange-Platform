@@ -3,12 +3,16 @@ import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import toast from "react-hot-toast";
+import { Eye, EyeClosed } from "lucide-react";
+import { useState } from "react";
 
 const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
   const provider = new GoogleAuthProvider()
+  const [showEye, setShowEye] = useState(false)
+  
   
   const handleLogin = (e)=>{
     e.preventDefault();
@@ -61,18 +65,24 @@ const Login = () => {
               <input name="email" type="email" placeholder="name@company.com" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 relative">
               <div className="flex justify-between items-center px-1">
                 <label className="text-sm font-bold text-gray-700">Password</label>
              
               </div>
-              <input name="password" type="password" placeholder="••••••••" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <input name="password" type={showEye ? "text" : "password"} placeholder="••••••••" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <span onClick={()=> setShowEye(!showEye)} className='absolute right-4 top-11 cursor-pointer'>
+             {
+               showEye ? <Eye /> : <EyeClosed />  
+               }
+               </span>
             </div>
                 <Link to={"/auth/forget"} className="text-sm font-bold text-indigo-600 hover:underline text-center p-2">Forgot Password?</Link>
 
             <button className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-xl shadow-indigo-100 transition-all active:scale-[0.98] mt-4">
               Login to Account
             </button>
+  
           </form>
 
           <div className="divider my-10 text-gray-400 text-xs font-bold tracking-widest uppercase">Or Continue With</div>

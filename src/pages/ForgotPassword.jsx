@@ -14,7 +14,7 @@ const ForgotPassword = () => {
       toast.error("Please enter your email address first!");
       return;
     }
-
+ 
     resetPassword(email)
       .then(() => {
         toast.success("Password reset email sent! Check your inbox.");

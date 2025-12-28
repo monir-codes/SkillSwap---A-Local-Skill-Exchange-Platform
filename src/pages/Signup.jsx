@@ -1,18 +1,28 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase.config';
 import { AuthContext } from '../Provider/AuthProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import { Eye, EyeClosed } from 'lucide-react';
 
 const Signup = () => {
   const {setUser} = useContext(AuthContext);
+  const [showEye, setShowEye] = useState(false)
   const navigate = useNavigate()
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
 const handleSignUp = (e)=>{
   e.preventDefault();
   const form = e.target
   const name = form.name.value;
   const email = form.email.value;
   const password = form.password.value;
+
+  if (!passwordRegex.test(password)){
+    toast.warn("Password is too weak!")
+    return
+  }
   const photo = form.photo.value;
 
   createUserWithEmailAndPassword(auth, email, password)
@@ -23,12 +33,14 @@ const handleSignUp = (e)=>{
       photoURL: photo,
     })
     .then(()=>{
-      navigate("/auth/login")
+      navigate("/")
     })
   })
   .catch((error)=>{
-    alert(error.code)
+    toast.error(error.code)
   })
+
+
 
 }
 
@@ -67,15 +79,23 @@ const handleSignUp = (e)=>{
               <label className="text-sm font-bold text-gray-700">Email Address</label>
               <input name='email' type="email" placeholder="name@email.com" className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none" />
             </div>
-            <div className="md:col-span-2 space-y-2">
+            <div className="md:col-span-2 space-y-2 relative">
               <label className="text-sm font-bold text-gray-700">Password</label>
-              <input name='password' type="password" placeholder="••••••••" className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none" />
-              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest pl-1 mt-2">1 Upper • 1 Lower • 6+ Characters</p>
+              <input name='password' type={showEye ? "text" : "password"} placeholder="••••••••" className=" w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none pr-14" />
+              
+              <span onClick={()=> setShowEye(!showEye)} className='absolute right-4 top-10 cursor-pointer'>
+                {
+                  showEye ? <Eye /> : <EyeClosed />  
+                }
+              </span>
+
+              <p className="text-[8px] md:text-[10px] text-gray-400 font-bold uppercase tracking-widest pl-1 mt-2">at least one Uppercase, one Lowercase, and minimum 6 characters</p>
             </div>
 
             <button className="md:col-span-2 w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg rounded-2xl shadow-xl shadow-indigo-100 transition-all active:scale-[0.98] mt-4">
               Sign Up
             </button>
+            <ToastContainer></ToastContainer>
           </form>
 
           <div className="mt-8 text-center text-gray-500 font-medium">
