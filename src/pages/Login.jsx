@@ -2,9 +2,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
-import toast from "react-hot-toast";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
 
@@ -25,7 +25,7 @@ const Login = () => {
       navigate(`${location.state ? location.state : "/"}`)
     })
     .catch((e)=>{
-      toast(e.code)
+      toast.error(e.code)
     })
   }
 
@@ -35,7 +35,7 @@ const Login = () => {
        navigate(`${location.state ? location.state : "/"}`)
     })
     .catch((error)=>{
-      toast(error.code)
+      toast.error(error)
     })
   }
 
@@ -63,7 +63,7 @@ const Login = () => {
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-700 ml-1">Email Address</label>
-              <input name="email" type="email" placeholder="name@company.com" onChange={(e)=> setEmail(e.target.value)} className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <input name="email" type="email" placeholder="name@company.com" onChange={(e)=> setEmail(e.target.value)} className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" required/>
             </div>
 
             <div className="space-y-2 relative">
@@ -71,7 +71,7 @@ const Login = () => {
                 <label className="text-sm font-bold text-gray-700">Password</label>
              
               </div>
-              <input name="password" type={showEye ? "text" : "password"} placeholder="••••••••" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" />
+              <input name="password" type={showEye ? "text" : "password"} placeholder="••••••••" className="w-full h-14 bg-white border border-gray-200 rounded-2xl px-5 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none" required/>
               <span onClick={()=> setShowEye(!showEye)} className='absolute right-4 top-11 cursor-pointer'>
              {
                showEye ? <Eye /> : <EyeClosed />  
@@ -83,6 +83,7 @@ const Login = () => {
             <button className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-xl shadow-indigo-100 transition-all active:scale-[0.98] mt-4">
               Login to Account
             </button>
+            <ToastContainer></ToastContainer>
   
           </form>
 

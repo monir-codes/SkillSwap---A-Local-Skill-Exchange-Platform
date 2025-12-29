@@ -69,19 +69,19 @@ const handleSignUp = (e)=>{
           <form onSubmit={handleSignUp} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-700">Full Name</label>
-              <input name='name' type="text" placeholder="John Doe" className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none" />
+              <input name='name' type="text" placeholder="John Doe" className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none " required/>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-700">Photo URL</label>
-              <input name='photo' type="text" placeholder="https://..." className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none" />
+              <input name='photo' type="url" placeholder="https://..." className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none " required/>
             </div>
             <div className="md:col-span-2 space-y-2">
               <label className="text-sm font-bold text-gray-700">Email Address</label>
-              <input name='email' type="email" placeholder="name@email.com" className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none" />
+              <input name='email' type="email" placeholder="name@email.com" className="w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none " required/>
             </div>
             <div className="md:col-span-2 space-y-2 relative">
               <label className="text-sm font-bold text-gray-700">Password</label>
-              <input name='password' type={showEye ? "text" : "password"} placeholder="••••••••" className=" w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none pr-14" />
+              <input name='password' type={showEye ? "text" : "password"} placeholder="••••••••" className=" w-full h-14 bg-gray-50 border-none rounded-2xl px-5 focus:ring-2 focus:ring-indigo-600/20 outline-none pr-14 " required/>
               
               <span onClick={()=> setShowEye(!showEye)} className='absolute right-4 top-10 cursor-pointer'>
                 {
